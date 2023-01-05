@@ -1,6 +1,7 @@
 let breedsSelect = document.querySelector("#breeds");
 
 insertBreedOptions();
+displayImages('retriever');
 
 async function insertBreedOptions() {
     try {
@@ -24,3 +25,24 @@ async function insertBreedOptions() {
     }
 }
 
+async function displayImages(breed) {
+    try {
+        let resp = await fetch(`https://dog.ceo/api/breed/${breed}/images/random/3`);
+        let jsonResponse = await resp.json();
+        console.log(jsonResponse);
+
+        jsonResponse.message.forEach((src) => {
+            let img = document.createElement('img');
+            img.src = src;
+            img.alt = "Cute doggo";
+            document.body.appendChild(img);
+        })
+
+    } catch (err) {
+        console.log('Something went wrong', err);
+        let errorParagraph = document.createElement('p');
+        errorParagraph.innerText = 'Nu am putut incarca imaginile. Te rugam sa incerci din nou.'
+        document.body.appendChild(errorParagraph);
+
+    }
+}
