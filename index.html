@@ -9,11 +9,13 @@
 </head>
 
 <body>
-
-    <label for="breeds">Choose a dog breed:</label>
-    <select id="breeds">
-        <option value=""> Loading breeds </option>
-    </select>
+    <form id="form">
+        <label for="breeds">Choose a dog breed:</label>
+        <select name="breed" required id="breeds">
+            <option value=""> Loading breeds </option>
+        </select>
+        <button type="submit"> Show images </button>
+    </form>
 
     <script src="./app.js"> </script>
 </body>
