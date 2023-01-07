@@ -1,7 +1,15 @@
 let breedsSelect = document.querySelector("#breeds");
+let formElement = document.querySelector("#form");
 
 insertBreedOptions();
-displayImages('retriever');
+
+formElement.addEventListener('submit', function (event) {
+    // Prevent the form from sending the data to the server
+    event.preventDefault();
+
+    removeImages();
+    displayImages(formElement.breed.value);
+});
 
 async function insertBreedOptions() {
     try {
@@ -43,6 +51,10 @@ async function displayImages(breed) {
         let errorParagraph = document.createElement('p');
         errorParagraph.innerText = 'Nu am putut incarca imaginile. Te rugam sa incerci din nou.'
         document.body.appendChild(errorParagraph);
-
     }
 }
+
+function removeImages() {
+    document.querySelectorAll('img').forEach((img) => img.remove());
+}
+
